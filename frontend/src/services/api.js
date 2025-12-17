@@ -2,7 +2,10 @@
  * Servicio de API para comunicación con el backend local
  */
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 
+  (process.env.NODE_ENV === 'production' 
+    ? 'https://ecommerce1-backend.onrender.com/api'  // Backend en Render (producción)
+    : 'http://localhost:4000/api');  // Backend local (desarrollo)
 
 // Helper para hacer requests con autenticación
 async function apiRequest(endpoint, options = {}) {
